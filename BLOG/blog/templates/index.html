@@ -41,7 +41,7 @@
                         <h5 class="card-title">{{ post.titulo }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{ post.categoria }} | {{ post.fecha|date:"d M Y" }}</h6>
                         <p class="card-text">{{ post.texto|truncatechars:100 }}</p>
-                        <a href="#" class="btn btn-primary btn-sm">Leer más</a>
+                        <a href="{% url 'detalle' pk=post.pk %}" class="btn btn-primary btn-sm">Leer más</a>
                     </div>
                 </div>
             </div>
