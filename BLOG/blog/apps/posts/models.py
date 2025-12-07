@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 # 1. Modelo Categoría
 class Categoria(models.Model):
@@ -34,3 +35,14 @@ class Post(models.Model):
     def delete(self, using=None, keep_parents=False):
         self.imagen.delete(self.imagen.name)
         super().delete()
+
+
+    # 3. Modelo Comentario
+class Comentario(models.Model):
+    # Usamos Post directamente porque está definido más arriba en este archivo
+    posts = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comentarios')
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comentarios')
+    texto = models.TextField()
+    fecha = models.DateTimeField(auto_now_add=True)
+def __str__(self):
+    return self.texto

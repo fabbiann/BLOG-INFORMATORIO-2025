@@ -19,7 +19,8 @@
                         <button type="submit" class="btn btn-outline-danger btn-sm">Salir</button>
                     </form>
                 {% else %}
-                    <a href="{% url 'login' %}" class="btn btn-outline-light btn-sm">Iniciar Sesión</a>
+                    <a href="{% url 'login' %}" class="btn btn-outline-light btn-sm me-2">Iniciar Sesión</a>
+                    <a href="{% url 'registro' %}" class="btn btn-warning btn-sm">Registrarse</a>
                 {% endif %}
             </div>
         </div>

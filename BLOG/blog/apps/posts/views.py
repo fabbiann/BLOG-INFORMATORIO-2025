@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Post
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
 # Vista para la página de inicio
 def index(request):
@@ -13,3 +15,17 @@ def index(request):
     
     # Renderizar el template con los datos
     return render(request, 'index.html', ctx)
+
+# Vista para registrar usuarios
+def registrar_usuario(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save() # Guarda el usuario en la BD
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'¡Bienvenido {username}! Tu cuenta ha sido creada.')
+            return redirect('login') # Redirige al login
+    else:
+        form = UserCreationForm()
+    
+    return render(request, 'registration/registro.html', {'form': form})
