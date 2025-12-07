@@ -7,9 +7,21 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-dark bg-dark mb-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
         <div class="container">
             <a class="navbar-brand" href="/">🚀 Blog Informatorio</a>
+            
+            <div class="d-flex text-white align-items-center">
+                {% if user.is_authenticated %}
+                    <span class="me-3">Hola, {{ user.username }} 👋</span>
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-danger btn-sm">Salir</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-outline-light btn-sm">Iniciar Sesión</a>
+                {% endif %}
+            </div>
         </div>
     </nav>
 
