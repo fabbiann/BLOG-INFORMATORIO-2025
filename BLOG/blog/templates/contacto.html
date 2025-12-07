@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h1 class="text-center mb-4">📩 Contáctanos</h1>
+
+        {% if mensaje_enviado %}
+            <div class="alert alert-success" role="alert">
+                ¡Gracias! Hemos recibido tu mensaje correctamente.
+            </div>
+        {% endif %}
+            
+        
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label class="form-label">Tu Email</label>
+                <input type="email" name="email_usuario" class="form-control" placeholder="tu@email.com" required>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Asunto</label>
+                <input type="text" name="asunto" class="form-control" placeholder="Consulta sobre..." required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Mensaje</label>
+                <textarea name="mensaje" class="form-control" rows="3" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100">Enviar</button>
+        </form>
+        
+    </div>
+</div>
+{% endblock %}

@@ -4,6 +4,9 @@ from .forms import ComentarioForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
+from django.core.mail import send_mail
+from django.conf import settings
+
 # Vista del inicio (Index)
 def index(request):
     posts = Post.objects.all()
@@ -51,3 +54,43 @@ def registrar_usuario(request):
     else:
         form = UserCreationForm()
     return render(request, 'registration/registro.html', {'form': form})
+
+# Vista para filtrar por categoría
+def posts_por_categoria(request, categoria_id):
+    # Buscamos la categoría o error 404
+    categoria = get_object_or_404(Categoria, id=categoria_id)
+    # Filtramos los posts que tengan esa categoría
+    posts = Post.objects.filter(categoria=categoria)
+    
+    ctx = {
+        'posts': posts,
+        'categoria_seleccionada': categoria
+    }
+    return render(request, 'index.html', ctx) # Reutilizamos el index para mostrar la lista
+
+
+
+def acerca_de(request):
+    return render(request, 'acerca_de.html')
+
+def contacto(request):
+    if request.method == 'POST':
+        # 1. Capturamos los datos del formulario
+        asunto = request.POST.get('asunto')
+        mensaje = request.POST.get('mensaje') + " / Email del usuario: " + request.POST.get('email_usuario')
+        email_origen = settings.EMAIL_HOST_USER # (Configuración ficticia por ahora)
+        email_destino = ['tu_correo_real@gmail.com'] # Aquí llegaría el correo en la vida real
+
+        # 2. Enviamos el correo (Al estar en modo consola, saldrá en la terminal)
+        send_mail(
+            asunto,
+            mensaje,
+            email_origen,
+            email_destino,
+            fail_silently=False,
+        )
+        
+        # 3. Redirigimos o mostramos mensaje de éxito
+        return render(request, 'contacto.html', {'mensaje_enviado': True})
+    
+    return render(request, 'contacto.html')

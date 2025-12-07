@@ -25,7 +25,10 @@
                 
                 <h1 class="display-4">{{ post.titulo }}</h1>
                 <p class="text-muted">
-                    📅 {{ post.fecha|date:"d M Y" }} | 📂 Categoría: {{ post.categoria }}
+                    📅 {{ post.fecha|date:"d M Y" }} | 📂 Categoría: 
+                    <a href="{% url 'posts_por_categoria' categoria_id=post.categoria.id %}" class="badge bg-secondary text-decoration-none">
+                        {{ post.categoria }}
+                    </a>
                 </p>
                 <hr>
                 <p class="lead">{{ post.texto|linebreaks }}</p>

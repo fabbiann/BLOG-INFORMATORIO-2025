@@ -126,3 +126,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = 'index'
 # A dónde te lleva si cierras sesión
 LOGOUT_REDIRECT_URL = 'index'
+
+
+# Configuración para pruebas: Imprime el correo en la consola
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
