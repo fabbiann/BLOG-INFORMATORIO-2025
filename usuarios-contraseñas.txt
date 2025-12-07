@@ -7,3 +7,14 @@ usuario :	pepe
 pass:		usuario123
 
 
+usuario :	colaborador1
+pass:		staff123
+
+
+
+para correr el sv:
+
+cd C:\Users\User\Desktop\informatorio\BLOG\blog     #la ub la reemplazas por donde hayas descargado la carpeta.
+python manage.py runserver
+
+
