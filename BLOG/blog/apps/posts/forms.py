@@ -24,3 +24,7 @@ class PostForm(forms.ModelForm):
             'categoria': forms.Select(attrs={'class': 'form-control'}),
             'imagen': forms.FileInput(attrs={'class': 'form-control'}),
         }
+
+        # AHORA SI SE PUDO BURRO, SE PUDO
+        #espero que funque
+        

@@ -47,7 +47,7 @@ def crear_post(request):
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
-            post.autor = request.user # Guardamos al autor (Colaborador)
+            post.autor = request.user 
             post.save()
             messages.success(request, '¡Post creado exitosamente!')
             return redirect('index')
@@ -138,11 +138,11 @@ def editar_post(request, pk):
             messages.success(request, '¡Artículo actualizado correctamente!')
             return redirect('detalle', pk=pk)
     else:
-        form = PostForm(instance=post) # Carga los datos actuales en el form
+        form = PostForm(instance=post)
 
     return render(request, 'crear_post.html', {'form': form, 'es_edicion': True})
 
-# --- VISTA PARA EDITAR COMENTARIO (Solo Dueño) ---
+# --- VISTA PARA EDITAR COMENTARIO (Solo el dueño) ---
 @login_required
 def editar_comentario(request, comentario_id):
     comentario = get_object_or_404(Comentario, id=comentario_id)

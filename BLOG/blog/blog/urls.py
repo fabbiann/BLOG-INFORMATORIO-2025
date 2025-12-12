@@ -9,9 +9,9 @@ from apps.posts.views import (
     posts_por_categoria, 
     acerca_de, 
     contacto,
-    borrar_comentario,  # <--- Faltaba esto
-    borrar_post,        # <--- Faltaba esto
-    crear_post,          # <--- Faltaba esto
+    borrar_comentario,  
+    borrar_post,        
+    crear_post,          
     editar_post,
     editar_comentario
 )
@@ -36,7 +36,10 @@ urlpatterns = [
     path('borrar-comentario/<int:comentario_id>/', borrar_comentario, name='borrar_comentario'),
     path('borrar-post/<int:pk>/', borrar_post, name='borrar_post'),
 
+<<<<<<< HEAD
     # Rutas de Edición
+=======
+>>>>>>> 9cef5c3ec9f7efba4144bfd1c05d67e0b112b7b7
     path('post/editar/<int:pk>/', editar_post, name='editar_post'),
     path('comentario/editar/<int:comentario_id>/', editar_comentario, name='editar_comentario'),
     

@@ -17,10 +17,10 @@ class Post(models.Model):
     texto = models.TextField(null=False)
     activo = models.BooleanField(default=True)
     
-    # Relación con Categoría (1 a N)
+    # Categoría (1 a N)
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, default='Sin categoría')
     
-    # Imagen del post (Requiere la librería Pillow instalada)
+    # Imagen del post
     imagen = models.ImageField(null=True, blank=True, upload_to='imagenes', default='static/post_default.png')
     
     publicado = models.DateTimeField(default=timezone.now)
@@ -28,12 +28,12 @@ class Post(models.Model):
     autor = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
-        ordering = ('-publicado',) # Ordena por fecha de publicación descendente
+        ordering = ('-publicado',)
 
     def __str__(self):
         return self.titulo
 
-    # Método para borrar la imagen física cuando se borra el post de la BD
+    # Para borrar la imagen física cuando se borra el post de la BD
     def delete(self, using=None, keep_parents=False):
         self.imagen.delete(self.imagen.name)
         super().delete()
@@ -41,7 +41,6 @@ class Post(models.Model):
 
     # 3. Modelo Comentario
 class Comentario(models.Model):
-    # Usamos Post directamente porque está definido más arriba en este archivo
     posts = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comentarios')
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comentarios')
     texto = models.TextField()
