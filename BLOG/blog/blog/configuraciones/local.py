@@ -15,10 +15,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-8nw=^qjqdvh1zvcnr!s4!9!3#h=kr#s^ogx2q_u$k3e^a%r(s='
 
@@ -122,9 +118,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-# A dónde te lleva si te logueas correctamente
 LOGIN_REDIRECT_URL = 'index'
-# A dónde te lleva si cierras sesión
 LOGOUT_REDIRECT_URL = 'index'
 
 

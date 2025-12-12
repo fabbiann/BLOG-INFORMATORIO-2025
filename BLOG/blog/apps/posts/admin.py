@@ -6,6 +6,6 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('titulo', 'categoria', 'publicado', 'activo')
     list_filter = ('categoria', 'activo') 
 
-# Registramos los modelos
+# Los modelos
 admin.site.register(Categoria)
 admin.site.register(Post, PostAdmin)
