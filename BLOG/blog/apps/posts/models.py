@@ -25,6 +25,8 @@ class Post(models.Model):
     
     publicado = models.DateTimeField(default=timezone.now)
 
+    autor = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+
     class Meta:
         ordering = ('-publicado',) # Ordena por fecha de publicación descendente
 
